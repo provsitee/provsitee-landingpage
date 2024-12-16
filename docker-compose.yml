@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/var/www
+    ports:
+      - 9000:9000
+    networks:
+      - laravel-network
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
+
+volumes:
+  dbdata:
