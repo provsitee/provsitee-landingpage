@@ -6,7 +6,8 @@ services:
     volumes:
       - .:/var/www
     ports:
-      - 9000:9000
+      - "80:8000"  # Mapeia a porta 80 do host para a porta 8000 do contêiner
+    command: php artisan serve --host=0.0.0.0 --port=8000  # Executa o servidor Laravel
     networks:
       - laravel-network
 
